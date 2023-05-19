@@ -64,16 +64,17 @@ NOAA National Centers for Environmental information, Climate at a Glance: Global
 
 
 ```python
-rapid_city_temp_url = ("https://www.ncei.noaa.gov/access/monitoring/"
-                        "climate-at-a-glance/city/time-series"
+rapid_city_temp_url = (https://www.ncei.noaa.gov/access/monitoring/"
+                        "climate"-at-a-glance/city/time-series"
                         "/USW00024090/tmax/ann/2/1949-2023.csv")
 rapid_city_temp_url
 ```
 
 
-
-
-    'https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/city/time-series/USW00024090/tmax/ann/2/1949-2023.csv'
+      Cell In[14], line 1
+        rapid_city_temp_url = (https://www.ncei.noaa.gov/access/monitoring/"
+                                                                           ^
+    SyntaxError: unterminated string literal (detected at line 1)
 
 
 
@@ -142,27 +143,27 @@ rapid_city_temp_df
     <tr>
       <th>0</th>
       <td>194912</td>
-      <td>58.2</td>
+      <td>58.4</td>
     </tr>
     <tr>
       <th>1</th>
       <td>195012</td>
-      <td>55.4</td>
+      <td>55.6</td>
     </tr>
     <tr>
       <th>2</th>
       <td>195112</td>
-      <td>54.3</td>
+      <td>54.6</td>
     </tr>
     <tr>
       <th>3</th>
       <td>195212</td>
-      <td>59.1</td>
+      <td>59.4</td>
     </tr>
     <tr>
       <th>4</th>
       <td>195312</td>
-      <td>59.6</td>
+      <td>59.8</td>
     </tr>
     <tr>
       <th>...</th>
@@ -172,7 +173,7 @@ rapid_city_temp_df
     <tr>
       <th>69</th>
       <td>201812</td>
-      <td>57.4</td>
+      <td>57.2</td>
     </tr>
     <tr>
       <th>70</th>
@@ -223,8 +224,8 @@ print('You earned {} of 5 points for downloading data'.format(points))
 ```
 
     ✅ Great work! You called a DataFrame.
-    ✅ Great work! You correctly downloaded data.
-    You earned 5 of 5 points for downloading data
+    ❌ Oops - your data are not correct.
+    You earned 1 of 5 points for downloading data
 
 
   > HINT: Check out the `type()` function below - you can use it to check that your data is now in `DataFrame` type object
@@ -279,27 +280,27 @@ rapid_city_temp_df
     <tr>
       <th>0</th>
       <td>1949</td>
-      <td>58.2</td>
+      <td>58.4</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1950</td>
-      <td>55.4</td>
+      <td>55.6</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1951</td>
-      <td>54.3</td>
+      <td>54.6</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1952</td>
-      <td>59.1</td>
+      <td>59.4</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1953</td>
-      <td>59.6</td>
+      <td>59.8</td>
     </tr>
     <tr>
       <th>...</th>
@@ -309,7 +310,7 @@ rapid_city_temp_df
     <tr>
       <th>69</th>
       <td>2018</td>
-      <td>57.4</td>
+      <td>57.2</td>
     </tr>
     <tr>
       <th>70</th>
@@ -360,8 +361,8 @@ print('You earned {} of 5 points for cleaning up years'.format(points))
 ```
 
     ✅ Great work! You called a DataFrame.
-    ✅ Great work! You correctly cleaned up years.
-    You earned 5 of 5 points for cleaning up years
+    ❌ Oops - your data are not correct.
+    You earned 1 of 5 points for cleaning up years
 
 
 <img src="https://static.thenounproject.com/png/3842781-200.png" width=20 style="float: left; padding: 3px" /> Want an EXTRA CHALLENGE? Modify the code to be **more expressive**.
@@ -405,27 +406,27 @@ rapid_city_temp_df
     <tr>
       <th>0</th>
       <td>1949</td>
-      <td>14.555556</td>
+      <td>14.666667</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1950</td>
-      <td>13.000000</td>
+      <td>13.111111</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1951</td>
-      <td>12.388889</td>
+      <td>12.555556</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1952</td>
-      <td>15.055556</td>
+      <td>15.222222</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1953</td>
-      <td>15.333333</td>
+      <td>15.444444</td>
     </tr>
     <tr>
       <th>...</th>
@@ -435,7 +436,7 @@ rapid_city_temp_df
     <tr>
       <th>69</th>
       <td>2018</td>
-      <td>14.111111</td>
+      <td>14.000000</td>
     </tr>
     <tr>
       <th>70</th>
@@ -486,8 +487,8 @@ print('You earned {} of 5 points for converting to Celcius'.format(points))
 ```
 
     ✅ Great work! You called a DataFrame.
-    ✅ Great work! You correctly converted to Celcius.
-    You earned 5 of 5 points for converting to Celcius
+    ❌ Oops - your data are not correct.
+    You earned 1 of 5 points for converting to Celcius
 
 
 <img src="https://static.thenounproject.com/png/3842781-200.png" width=20 style="float: left; padding: 3px" /> Want an **EXTRA CHALLENGE**?
@@ -510,7 +511,7 @@ print('You earned {} of 5 points for converting to Celcius'.format(points))
 sns.set(font_scale=1.25, style = 'ticks')
 rapid_city_temp_df.plot(
     x='Date', y='Temp', title= "Rapid City Temp Over Time",
-    ylabel = "Temperature($^\circ$C)", xlabel = "Date", color = "magenta", kind = 'bar', figsize = (16, 6))
+    ylabel = "Temperature($^\circ$C)", xlabel = "Date", color = "magenta", figsize = (16, 6), legend = False)
 
 
 ```
@@ -544,8 +545,7 @@ There are many other things you can do to customize your plot. Take a look at th
   * Use a bar graph instead (usually we use lines for time series, but since this is annual it could go either way)
   * Add a trend line
 
-## YOUR RAPID CITY PLOT HEADLINE HERE
-Describe your plot in this cell in 2-3 sentences
+"Average Rapid City Temperatures Trending Upwards"
 
 **THIS ISN'T THE END EITHER! Don't forget to reproduce your analysis in a new location!**
 
