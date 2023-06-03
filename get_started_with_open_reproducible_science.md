@@ -64,17 +64,18 @@ NOAA National Centers for Environmental information, Climate at a Glance: Global
 
 
 ```python
-rapid_city_temp_url = (https://www.ncei.noaa.gov/access/monitoring/"
-                        "climate"-at-a-glance/city/time-series"
-                        "/USW00024090/tmax/ann/2/1949-2023.csv")
+# creating a URL link to retrieve data from
+rapid_city_temp_url = ('https://www.ncei.noaa.gov/access/monitoring/'
+                       'climate-at-a-glance/national/time-series/110/'
+                       'tavg/1/4/1895-2023.csv?base_prd=true&begbase'
+                       'year=1901&endbaseyear=2000')
 rapid_city_temp_url
 ```
 
 
-      Cell In[14], line 1
-        rapid_city_temp_url = (https://www.ncei.noaa.gov/access/monitoring/"
-                                                                           ^
-    SyntaxError: unterminated string literal (detected at line 1)
+
+
+    'https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/national/time-series/110/tavg/1/4/1895-2023.csv?base_prd=true&begbaseyear=1901&endbaseyear=2000'
 
 
 
@@ -100,15 +101,17 @@ print('You earned {} of 6 points for defining a url variable'.format(points))
 ```
 
     ✅ Great work! You correctly called your url variable.
-    ✅ Great work! Your url is the correct length.
-    You earned 6 of 6 points for defining a url variable
+    ❌ Oops - your url variable is not the correct length.
+    You earned 3 of 6 points for defining a url variable
+
+
 
 
 
 ```python
 # downloaded data with pandas
-rapid_city_temp_df = pd.read_csv(rapid_city_temp_url, header=3, 
-                        names=['Date', 'Temp'])
+rapid_city_temp_df = pd.read_csv(rapid_city_temp_url, header=4, 
+                        names=['Date', 'Temp', 'Anomoly'])
 rapid_city_temp_df
 
 
@@ -137,67 +140,79 @@ rapid_city_temp_df
       <th></th>
       <th>Date</th>
       <th>Temp</th>
+      <th>Anomoly</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>194912</td>
-      <td>58.4</td>
+      <td>189504</td>
+      <td>52.90</td>
+      <td>1.85</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>195012</td>
-      <td>55.6</td>
+      <td>189604</td>
+      <td>52.34</td>
+      <td>1.29</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>195112</td>
-      <td>54.6</td>
+      <td>189704</td>
+      <td>51.15</td>
+      <td>0.10</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>195212</td>
-      <td>59.4</td>
+      <td>189804</td>
+      <td>50.79</td>
+      <td>-0.26</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>195312</td>
-      <td>59.8</td>
+      <td>189904</td>
+      <td>50.61</td>
+      <td>-0.44</td>
     </tr>
     <tr>
       <th>...</th>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>69</th>
-      <td>201812</td>
-      <td>57.2</td>
+      <th>124</th>
+      <td>201904</td>
+      <td>52.84</td>
+      <td>1.79</td>
     </tr>
     <tr>
-      <th>70</th>
-      <td>201912</td>
-      <td>54.7</td>
+      <th>125</th>
+      <td>202004</td>
+      <td>50.88</td>
+      <td>-0.17</td>
     </tr>
     <tr>
-      <th>71</th>
-      <td>202012</td>
-      <td>61.8</td>
+      <th>126</th>
+      <td>202104</td>
+      <td>51.87</td>
+      <td>0.82</td>
     </tr>
     <tr>
-      <th>72</th>
-      <td>202112</td>
-      <td>62.1</td>
+      <th>127</th>
+      <td>202204</td>
+      <td>50.65</td>
+      <td>-0.40</td>
     </tr>
     <tr>
-      <th>73</th>
-      <td>202212</td>
-      <td>60.9</td>
+      <th>128</th>
+      <td>202304</td>
+      <td>51.37</td>
+      <td>0.32</td>
     </tr>
   </tbody>
 </table>
-<p>74 rows × 2 columns</p>
+<p>129 rows × 3 columns</p>
 </div>
 
 
@@ -247,97 +262,8 @@ type(rapid_city_temp_df)
 ```python
 # ncei has wacky years .iloc selects a row or column
 rapid_city_temp_df.iloc[:,0] = rapid_city_temp_df.iloc[:,0] // 100
-rapid_city_temp_df
 
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Date</th>
-      <th>Temp</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1949</td>
-      <td>58.4</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1950</td>
-      <td>55.6</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1951</td>
-      <td>54.6</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1952</td>
-      <td>59.4</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1953</td>
-      <td>59.8</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>69</th>
-      <td>2018</td>
-      <td>57.2</td>
-    </tr>
-    <tr>
-      <th>70</th>
-      <td>2019</td>
-      <td>54.7</td>
-    </tr>
-    <tr>
-      <th>71</th>
-      <td>2020</td>
-      <td>61.8</td>
-    </tr>
-    <tr>
-      <th>72</th>
-      <td>2021</td>
-      <td>62.1</td>
-    </tr>
-    <tr>
-      <th>73</th>
-      <td>2022</td>
-      <td>60.9</td>
-    </tr>
-  </tbody>
-</table>
-<p>74 rows × 2 columns</p>
-</div>
-
-
 
 
 ```python
@@ -360,9 +286,23 @@ else:
 print('You earned {} of 5 points for cleaning up years'.format(points))
 ```
 
-    ✅ Great work! You called a DataFrame.
-    ❌ Oops - your data are not correct.
-    You earned 1 of 5 points for cleaning up years
+    ❌ Oops - make sure to call your DataFrame for testing.
+
+
+
+    ---------------------------------------------------------------------------
+
+    TypeError                                 Traceback (most recent call last)
+
+    Cell In[9], line 11
+          8 else:
+          9     print('\u274C Oops - make sure to call your DataFrame for testing.')
+    ---> 11 summary = [round(val, 2) for val in tmax_df_resp.mean().values]
+         12 if summary == [1985.5, 59.04]:
+         13     points += 4
+
+
+    TypeError: NDFrame._add_numeric_operations.<locals>.mean() missing 1 required positional argument: 'self'
 
 
 <img src="https://static.thenounproject.com/png/3842781-200.png" width=20 style="float: left; padding: 3px" /> Want an EXTRA CHALLENGE? Modify the code to be **more expressive**.
@@ -372,7 +312,7 @@ Rewrite the code below to select columns by **name** instead of by **index**. Yo
 
 ```python
 #convert to celcius
-rapid_city_temp_df.iloc[:,1] = (rapid_city_temp_df.iloc[:,1] - 32) * 5 / 9
+rapid_city_temp_df["Temp_C"] = (rapid_city_temp_df["Temp"] - 32) * 5 / 9
 rapid_city_temp_df
 
 ```
@@ -400,67 +340,91 @@ rapid_city_temp_df
       <th></th>
       <th>Date</th>
       <th>Temp</th>
+      <th>Anomoly</th>
+      <th>Temp_C</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>1949</td>
-      <td>14.666667</td>
+      <td>1895</td>
+      <td>52.90</td>
+      <td>1.85</td>
+      <td>11.611111</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1950</td>
-      <td>13.111111</td>
+      <td>1896</td>
+      <td>52.34</td>
+      <td>1.29</td>
+      <td>11.300000</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1951</td>
-      <td>12.555556</td>
+      <td>1897</td>
+      <td>51.15</td>
+      <td>0.10</td>
+      <td>10.638889</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1952</td>
-      <td>15.222222</td>
+      <td>1898</td>
+      <td>50.79</td>
+      <td>-0.26</td>
+      <td>10.438889</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1953</td>
-      <td>15.444444</td>
+      <td>1899</td>
+      <td>50.61</td>
+      <td>-0.44</td>
+      <td>10.338889</td>
     </tr>
     <tr>
       <th>...</th>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>69</th>
-      <td>2018</td>
-      <td>14.000000</td>
-    </tr>
-    <tr>
-      <th>70</th>
+      <th>124</th>
       <td>2019</td>
-      <td>12.611111</td>
+      <td>52.84</td>
+      <td>1.79</td>
+      <td>11.577778</td>
     </tr>
     <tr>
-      <th>71</th>
+      <th>125</th>
       <td>2020</td>
-      <td>16.555556</td>
+      <td>50.88</td>
+      <td>-0.17</td>
+      <td>10.488889</td>
     </tr>
     <tr>
-      <th>72</th>
+      <th>126</th>
       <td>2021</td>
-      <td>16.722222</td>
+      <td>51.87</td>
+      <td>0.82</td>
+      <td>11.038889</td>
     </tr>
     <tr>
-      <th>73</th>
+      <th>127</th>
       <td>2022</td>
-      <td>16.055556</td>
+      <td>50.65</td>
+      <td>-0.40</td>
+      <td>10.361111</td>
+    </tr>
+    <tr>
+      <th>128</th>
+      <td>2023</td>
+      <td>51.37</td>
+      <td>0.32</td>
+      <td>10.761111</td>
     </tr>
   </tbody>
 </table>
-<p>74 rows × 2 columns</p>
+<p>129 rows × 4 columns</p>
 </div>
 
 
@@ -510,7 +474,7 @@ print('You earned {} of 5 points for converting to Celcius'.format(points))
 ```python
 sns.set(font_scale=1.25, style = 'ticks')
 rapid_city_temp_df.plot(
-    x='Date', y='Temp', title= "Rapid City Temp Over Time",
+    x='Date', y='Temp_C', title= "Rapid City Temp Over Time",
     ylabel = "Temperature($^\circ$C)", xlabel = "Date", color = "magenta", figsize = (16, 6), legend = False)
 
 
@@ -525,7 +489,7 @@ rapid_city_temp_df.plot(
 
 
     
-![png](get_started_with_open_reproducible_science_files/get_started_with_open_reproducible_science_20_1.png)
+![png](get_started_with_open_reproducible_science_files/get_started_with_open_reproducible_science_21_1.png)
     
 
 
@@ -555,3 +519,256 @@ There are many other things you can do to customize your plot. Take a look at th
 
 ## Your turn: pick a new location and/or measurement to plot
 Below, recreate the workflow you just did in a place that interests you OR with a different measurement. See the instructions above fore how to get your URL. You will need to make your own new Markdown and Code cells below this one.
+
+
+```python
+na_avg_temp = ('https://www.ncei.noaa.gov/access/monitoring'
+                '/climate-at-a-glance/global/time-series'
+                '/northAmerica/land/1/4/1850-2023/data.csv')
+na_avg_temp
+```
+
+
+
+
+    'https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/global/time-series/northAmerica/land/1/4/1850-2023/data.csv'
+
+
+
+
+```python
+# downloaded data with pandas
+na_avg_temp_df = pd.read_csv(na_avg_temp, header=4, 
+                        names=['Date', 'Temp'])
+na_avg_temp_df
+
+
+
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Temp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1910</td>
+      <td>0.35</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1911</td>
+      <td>-0.98</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1912</td>
+      <td>-0.28</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1913</td>
+      <td>-0.03</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1914</td>
+      <td>-0.98</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>2019</td>
+      <td>1.26</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>2020</td>
+      <td>0.37</td>
+    </tr>
+    <tr>
+      <th>111</th>
+      <td>2021</td>
+      <td>1.11</td>
+    </tr>
+    <tr>
+      <th>112</th>
+      <td>2022</td>
+      <td>-0.11</td>
+    </tr>
+    <tr>
+      <th>113</th>
+      <td>2023</td>
+      <td>0.87</td>
+    </tr>
+  </tbody>
+</table>
+<p>114 rows × 2 columns</p>
+</div>
+
+
+
+
+```python
+#convert to celcius
+na_avg_temp_df["Temp_C"] = (na_avg_temp_df["Temp"] - 32) * 5 / 9
+na_avg_temp_df
+
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Temp</th>
+      <th>Temp_C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1910</td>
+      <td>-17.583333</td>
+      <td>-27.546296</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1911</td>
+      <td>-18.322222</td>
+      <td>-27.956790</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1912</td>
+      <td>-17.933333</td>
+      <td>-27.740741</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1913</td>
+      <td>-17.794444</td>
+      <td>-27.663580</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1914</td>
+      <td>-18.322222</td>
+      <td>-27.956790</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>2019</td>
+      <td>-17.077778</td>
+      <td>-27.265432</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>2020</td>
+      <td>-17.572222</td>
+      <td>-27.540123</td>
+    </tr>
+    <tr>
+      <th>111</th>
+      <td>2021</td>
+      <td>-17.161111</td>
+      <td>-27.311728</td>
+    </tr>
+    <tr>
+      <th>112</th>
+      <td>2022</td>
+      <td>-17.838889</td>
+      <td>-27.688272</td>
+    </tr>
+    <tr>
+      <th>113</th>
+      <td>2023</td>
+      <td>-17.294444</td>
+      <td>-27.385802</td>
+    </tr>
+  </tbody>
+</table>
+<p>114 rows × 3 columns</p>
+</div>
+
+
+
+
+```python
+sns.set(font_scale=1.25, style = 'ticks')
+na_avg_temp_df.plot(
+    x='Date', y='Temp_C', title= "North America Temp Over Time",
+    ylabel = "Temperature($^\circ$C)", xlabel = "Date", color = "magenta", figsize = (16, 6), legend = False)
+
+```
+
+
+
+
+    <Axes: title={'center': 'North America Temp Over Time'}, xlabel='Date', ylabel='Temperature($^\\circ$C)'>
+
+
+
+
+    
+![png](get_started_with_open_reproducible_science_files/get_started_with_open_reproducible_science_29_1.png)
+    
+
+
+
+```python
+# downloaded data with pandas
+na_avg_temp_df = pd.read_csv(na_avg_temp, header=4, 
+                        names=['Date', 'Temp'])
+na_avg_temp_df
+
+```
